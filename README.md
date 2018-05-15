@@ -1,0 +1,1 @@
+# NRF52840-Beacon-Scanner
