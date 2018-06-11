@@ -42,12 +42,9 @@
 #define UART_TX_BUF_SIZE        256                                     /**< UART TX buffer size. */
 #define UART_RX_BUF_SIZE        256                                     /**< UART RX buffer size. */
 
-//#define SCAN_INTERVAL           0x00A0                                  /**< Determines scan interval in units of 0.625 millisecond. */
-//#define SCAN_WINDOW             0x0050                                  /**< Determines scan window in units of 0.625 millisecond. */
+#define SCAN_INTERVAL           0x0320                                  // [MOTAM] Determines scan interval in units of 0.625 millisecond -> 0x0320 = 500ms.*/
+#define SCAN_WINDOW             0x0320                                  // [MOTAM] Determines scan window in units of 0.625 millisecond -> 0x0320 = 500ms.*/
 #define SCAN_DURATION           0x0000                                  /**< Timout when scanning. 0x0000 disables timeout. */
-
-
-#define ECHOBACK_BLE_UART_DATA  1                                       /**< Echo the UART data that is received over the Nordic UART Service back to the sender. */
 
 
 static uint8_t m_scan_buffer_data[BLE_GAP_SCAN_BUFFER_EXTENDED_MIN];	// [MOTAM] Buffer for extended advertisements
@@ -66,16 +63,13 @@ static ble_gap_scan_params_t const m_scan_params =
 {
 	.active   = 0,
 	.extended = 1,
-//    .interval = SCAN_INTERVAL,
-//    .window   = SCAN_WINDOW,
-	.interval = 0x0800,
-	.window   = 0x0800,
+    .interval = SCAN_INTERVAL,
+    .window   = SCAN_WINDOW,
     .timeout  = SCAN_DURATION,
 
 	// [MOTAM] Choose only one of the following scan_phys
 //	.scan_phys        = BLE_GAP_PHY_1MBPS,				// [MOTAM] Scan 1MBPS advertisements
 	.scan_phys        = BLE_GAP_PHY_CODED,				// [MOTAM] Scan PHY_CODED advertisements
-//	.scan_phys		  = BLE_GAP_PHYS_SUPPORTED,			// [MOTAM] Scan all type advertisements (Doesn't work)
 	.filter_policy    = BLE_GAP_SCAN_FP_ACCEPT_ALL,
 };
 
@@ -139,15 +133,14 @@ void uart_event_handle(app_uart_evt_t * p_event)
 
 
 
-/**@brief Function for handling the advertising report BLE event.
- *
- * @param[in] p_adv_report  Advertising report from the SoftDevice.
+/**
+ * [MOTAM] Function for handling the advertising report BLE event.
+ *	This function filters every advertisements and prints MOTAM beacons through serial port.
  */
 static void on_adv_report(ble_gap_evt_adv_report_t const * p_adv_report)
 {
     ret_code_t err_code;
 
-	// [MOTAM] -----
 	if ((p_adv_report->data.p_data[2] == 0xBE) && (p_adv_report->data.p_data[3] == 0xDE))
 	{
 		printf("length %d: ", p_adv_report->data.len);
@@ -157,7 +150,6 @@ static void on_adv_report(ble_gap_evt_adv_report_t const * p_adv_report)
 		printf("\r\n");
 		fflush(stdout);
 	}
-	// ----- [MOTAM]
 
 	err_code = sd_ble_gap_scan_start(NULL, &m_scan_buffer);
 	APP_ERROR_CHECK(err_code);
