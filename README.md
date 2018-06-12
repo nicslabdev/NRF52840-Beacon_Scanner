@@ -10,7 +10,7 @@ This repository is part of [MOTAM project](https://www.nics.uma.es/projects/mota
 
 ## Requeriments
 
-Currently, this project use:
+Currently, this project uses:
 -   nRF5 SDK version 15.0.0
 -   S140 SoftDevice v6.0.0 API
 -   nRF52840 DK (PCA10056)
