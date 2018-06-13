@@ -1,7 +1,7 @@
 /***************************************************************************************/
 /*
  * MOTAM_scanner
- * Created by Manuel Montenegro, Jun 8, 2018.
+ * Created by Manuel Montenegro, Jun 13, 2018.
  * Developed for MOTAM project.
  *
  *  This is a Bluetooth 5 scanner. This code reads every advertisement from MOTAM beacons
@@ -27,13 +27,11 @@
 #include "nrf_sdh_ble.h"
 #include "nrf_sdh_soc.h"
 #include "ble_advdata.h"
-#include "nrf_ble_gatt.h"
 #include "nrf_pwr_mgmt.h"
 
 #include "nrf_log.h"
 #include "nrf_log_ctrl.h"
 #include "nrf_log_default_backends.h"
-
 
 
 #define APP_BLE_CONN_CFG_TAG    1                                       /**< A tag that refers to the BLE stack configuration we set with @ref sd_ble_cfg_set. Default tag is @ref BLE_CONN_CFG_TAG_DEFAULT. */
@@ -70,6 +68,7 @@ static ble_gap_scan_params_t const m_scan_params =
 	// [MOTAM] Choose only one of the following scan_phys
 //	.scan_phys        = BLE_GAP_PHY_1MBPS,				// [MOTAM] Scan 1MBPS advertisements
 	.scan_phys        = BLE_GAP_PHY_CODED,				// [MOTAM] Scan PHY_CODED advertisements
+	
 	.filter_policy    = BLE_GAP_SCAN_FP_ACCEPT_ALL,
 };
 
@@ -143,7 +142,6 @@ static void on_adv_report(ble_gap_evt_adv_report_t const * p_adv_report)
 
 	if ((p_adv_report->data.p_data[2] == 0xBE) && (p_adv_report->data.p_data[3] == 0xDE))
 	{
-		printf("length %d: ", p_adv_report->data.len);
 		for (uint8_t i = 0; i < p_adv_report->data.len; i++) {
 			printf ("%02x", p_adv_report->data.p_data[i]);
 		}
