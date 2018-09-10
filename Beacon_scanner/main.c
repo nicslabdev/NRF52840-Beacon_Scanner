@@ -63,8 +63,8 @@ static ble_gap_scan_params_t m_scan_param =                 /**< Scan parameters
     .window        = SCAN_WINDOW,
     .filter_policy = BLE_GAP_SCAN_FP_ACCEPT_ALL,
     .timeout       = SCAN_DURATION,
-    .scan_phys     = BLE_GAP_PHY_CODED,                                 // Choose only one of the following scan_phys
-//    .scan_phys     = BLE_GAP_PHY_1MBPS,
+//    .scan_phys     = BLE_GAP_PHY_CODED,                                 // Choose only one of the following scan_phys
+    .scan_phys     = BLE_GAP_PHY_1MBPS,
 //    .scan_phys     = BLE_GAP_PHY_2MBPS,
     .extended      = 1,
 };

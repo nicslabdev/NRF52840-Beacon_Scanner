@@ -37,6 +37,6 @@ Where */dev/ttyACM0* is the nRF52840 PDK device. You can know what is the path o
 
 ## Applications' description
 
-- **beacon_scanner:** This application is for general purposes. It simply reads each beacon advertisements and prints it by serial port. Currently this only reads PHY Coded advertisements (long range advertisements), but you can easily change the used PHY from code.
+- **beacon_scanner:** This application is for general purposes. It simply reads each beacon advertisements and prints it by serial port. Currently this only reads 1MBPS PHY advertisements, but you can easily change the used PHY from code.
 
-- **MOTAM_scanner:** Reads advertisements and filters it in order to show by serial port only the MOTAM beacons. In this case, the nRF52840 will be connected by USB port to the [MOTAM gateway](https://github.com/nicslabdev/MOTAM-Gateway). MOTAM beacons report on the state of the environment, so the gateway will collect this information.
+- **motam_scanner:** Reads advertisements and filters it in order to show by serial port only the MOTAM beacons. In this case, the nRF52840 will be connected by USB port to the [MOTAM gateway](https://github.com/nicslabdev/MOTAM-Gateway). MOTAM beacons report on the state of the environment, so the gateway will collect this information.
