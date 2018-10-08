@@ -1,4 +1,4 @@
-PROJECT_NAME     := PDK-motam_scanner
+PROJECT_NAME     := Dongle-motam_scanner
 TARGETS          := nrf52840_xxaa
 OUTPUT_DIRECTORY := _build
 
@@ -6,7 +6,7 @@ SDK_ROOT := ../../../../../..
 PROJ_DIR := ../../..
 
 $(OUTPUT_DIRECTORY)/nrf52840_xxaa.out: \
-  LINKER_SCRIPT  := motam_scanner_pca10056_gcc_nrf52.ld
+  LINKER_SCRIPT  := motam_scanner_pca10059_gcc_nrf52.ld
 
 # Source files common to all targets
 SRC_FILES += \
@@ -199,7 +199,7 @@ OPT = -O3 -g3
 
 # C flags common to all targets
 CFLAGS += $(OPT)
-CFLAGS += -DBOARD_PCA10056
+CFLAGS += -DBOARD_PCA10059
 CFLAGS += -DCONFIG_GPIO_AS_PINRESET
 CFLAGS += -DFLOAT_ABI_HARD
 CFLAGS += -DNRF52840_XXAA
@@ -223,7 +223,7 @@ ASMFLAGS += -g3
 ASMFLAGS += -mcpu=cortex-m4
 ASMFLAGS += -mthumb -mabi=aapcs
 ASMFLAGS += -mfloat-abi=hard -mfpu=fpv4-sp-d16
-ASMFLAGS += -DBOARD_PCA10056
+ASMFLAGS += -DBOARD_PCA10059
 ASMFLAGS += -DCONFIG_GPIO_AS_PINRESET
 ASMFLAGS += -DFLOAT_ABI_HARD
 ASMFLAGS += -DNRF52840_XXAA
