@@ -209,7 +209,7 @@ static void scan_evt_handler(scan_evt_t const * p_scan_evt)
 			int data_len = p_scan_evt->params.p_not_found->data.len;	// Packet data length
 
 			// Filtering MOTAM advertisements
-        	if (p_data[1] == 0xFF && p_data[2] == 0xDE && p_data [3] == 0xBE)
+        	if (p_data[1] == 0xFF && p_data[2] == 0xBE && p_data [3] == 0xDE)
         	{
 				// Conversion from byte string to hexadecimal char string
 				for (i = 0; i < data_len; i++ )
