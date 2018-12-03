@@ -4,9 +4,9 @@ This is a Bluetooth 5 advertisements' scanner developed for [nRF52840 Dongle](ht
 
 This application captures advertisements with extended advertising characteristic activated and BT5 PHYs: 2Mbps, 1Mbps and PHY Coded.
 
-The application sends the captured advertisements through serial port.
+The application sends the captured advertisements through serial port. It simply reads each beacon advertisements and prints it by serial port. Currently this only reads 1MBPS PHY advertisements, but you can easily change the used PHY from code.~~ (this will be updated soon)
 
-This repository is part of [MOTAM project](https://www.nics.uma.es/projects/motam), but you can use beacon_scanner for general purposes.
+This repository is the base of [MOTAM-Scanner](https://github.com/nicslabdev/MOTAM-Scanner).
 
 ## Requeriments
 
@@ -17,7 +17,7 @@ This project uses:
 
 ## Get started
 
-You can find a hex folder with the **precompiled applications** for PCA10059 and PCA10056.
+You can find a hex folder with the **precompiled applications** for PCA10056 and PCA10059.
 
 In order to program the application on the nRF52840, you can use [nRF Connect application for Desktop](https://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF-Connect-for-Desktop) from Nordic Semiconductor or nrfjprog (just in case you are using nRF52840 Development Kit).
 
@@ -52,9 +52,3 @@ If you want to compile the project, you can use GCC and Eclipse. Put the downloa
 	\nRF5_SDK_15.2.0\examples\ble_central folder.
 	
 More info about using GCC and Eclipse [here](https://devzone.nordicsemi.com/tutorials/b/getting-started/posts/development-with-gcc-and-eclipse).
-
-## Applications' description
-
-- ~~**beacon_scanner:** This application is for general purposes. It simply reads each beacon advertisements and prints it by serial port. Currently this only reads 1MBPS PHY advertisements, but you can easily change the used PHY from code.~~ (this will be updated soon)
-
-- **motam_scanner:** Reads advertisements and filters it in order to show by serial port only the MOTAM beacons. In this case, the nRF52840 will be connected by USB port to the [MOTAM gateway](https://github.com/nicslabdev/MOTAM-Gateway). MOTAM beacons report on the state of the environment, so the gateway will collect this information. By default, this application will show PHY Coded advertisements.
